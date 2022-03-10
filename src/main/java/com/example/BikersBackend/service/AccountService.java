@@ -12,6 +12,7 @@ public class AccountService {
     public List<Account> getAccounts(){
         List<Account> accounts = new ArrayList<>();
         accounts.add(new Account(1, "admin", "admin@gmail.com", "test"));
+        accounts.add(new Account(2, "user", "user@gmail.com", "user"));
         return accounts;
     }
 }
