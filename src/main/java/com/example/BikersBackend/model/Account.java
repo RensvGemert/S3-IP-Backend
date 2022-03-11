@@ -1,8 +1,15 @@
 package com.example.BikersBackend.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "accountTable")
 public class Account {
+    @javax.persistence.Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer accountId;
     private String accountName;
+    @Column(unique = true)
     private String accountEmail;
     private String accountPassword;
 
@@ -47,6 +54,7 @@ public class Account {
     public void setAccountPassword(String accountPassword) {
         this.accountPassword = accountPassword;
     }
+
 
     @Override
     public String toString() {
