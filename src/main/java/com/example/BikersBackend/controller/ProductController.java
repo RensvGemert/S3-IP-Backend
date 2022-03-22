@@ -3,19 +3,17 @@ package com.example.BikersBackend.controller;
 import com.example.BikersBackend.model.Product;
 import com.example.BikersBackend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
 
-    private ProductService productService;
+    private final ProductService productService;
 
     @Autowired
     public ProductController(ProductService productService) {
@@ -23,7 +21,12 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getProducts(){
-        return productService.getProducts();
+    public List<Product> getAllProducts(){
+        return productService.getAllProducts();
+    }
+
+    @GetMapping("/details/{productId}")
+    public Optional <Product> getProductsById(@PathVariable Integer productId) {
+        return productService.getProductsById(productId);
     }
 }
