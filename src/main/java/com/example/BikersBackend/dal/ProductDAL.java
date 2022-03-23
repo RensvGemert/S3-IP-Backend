@@ -6,18 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductDAL {
 
-    private IProductRepository productRepository;
+    private final IProductRepository productRepository;
 
     @Autowired
     public ProductDAL(IProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
-    public List<Product> getProducts(){
+    public List<Product> getAllProducts(){
         return productRepository.findAll();
+    }
+
+    public Optional <Product> getProductsById(Integer id){
+        return productRepository.findById(id);
     }
 }
