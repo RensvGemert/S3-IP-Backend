@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
+
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
@@ -25,8 +26,9 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/details/{productId}")
-    public Optional <Product> getProductsById(@PathVariable Integer productId) {
+    @RequestMapping("/details/{productId}")
+    @GetMapping
+    public Optional<Product> getProductsById(@PathVariable Integer productId) {
         return productService.getProductsById(productId);
     }
 }

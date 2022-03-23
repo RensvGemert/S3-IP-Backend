@@ -3,12 +3,10 @@ package com.example.BikersBackend.controller;
 import com.example.BikersBackend.model.User;
 import com.example.BikersBackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -25,5 +23,11 @@ public class UserController {
     @GetMapping
     public List<User> getUsers(){
         return userService.getUsers();
+    }
+
+    @RequestMapping("/details/{id}")
+    @GetMapping
+    public Optional<User> getUsersById(@PathVariable Integer id){
+        return userService.getUsersById(id);
     }
 }

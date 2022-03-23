@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserDAL {
@@ -19,5 +20,9 @@ public class UserDAL {
 
     public List<User> getUsers(){
         return userRepository.findAll();
+    }
+
+    public Optional<User> getUsersById(Integer id) {
+        return userRepository.findById(id);
     }
 }
