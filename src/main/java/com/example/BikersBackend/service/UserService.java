@@ -25,4 +25,5 @@ public class UserService {
     public Optional<User> getUsersById(Integer id) {
         return userRepository.findById(id);
     }
+
 }

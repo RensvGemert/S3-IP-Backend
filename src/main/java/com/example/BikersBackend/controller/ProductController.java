@@ -31,4 +31,9 @@ public class ProductController {
     public Optional<Product> getProductsById(@PathVariable Integer productId) {
         return productService.getProductsById(productId);
     }
+
+    @PostMapping("/create")
+    public void createProduct(@RequestBody Product product) {
+        productService.createProduct(product);
+    }
 }
