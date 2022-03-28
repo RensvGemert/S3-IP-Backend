@@ -29,7 +29,7 @@ public class ProductController {
     @RequestMapping("/details/{productId}")
     @GetMapping
     public Optional<Product> getProductsById(@PathVariable Integer productId) {
-        return productService.getProductsById(productId);
+        return productService.getProductById(productId);
     }
 
     @PostMapping("/create")

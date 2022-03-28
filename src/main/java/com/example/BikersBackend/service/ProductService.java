@@ -22,12 +22,14 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProductsById(Integer id){
+    public Optional<Product> getProductById(Integer id){
         return productRepository.findById(id);
     }
 
     public void createProduct(Product product){
-        productRepository.save(product);
+        if(product.productTitle != "" || product.productDescription != ""){
+            productRepository.save(product);
+        }
     }
 
 }
