@@ -26,8 +26,7 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @RequestMapping("/details/{productId}")
-    @GetMapping
+    @GetMapping("/details/{productId}")
     public Optional<Product> getProductsById(@PathVariable Integer productId) {
         return productService.getProductById(productId);
     }
@@ -36,4 +35,10 @@ public class ProductController {
     public void createProduct(@RequestBody Product product) {
         productService.createProduct(product);
     }
+
+    @DeleteMapping("/delete/{productId}")
+    public void deleteProduct(@PathVariable("productId") Integer productId) {
+        productService.deleteProduct(productId);
+    }
+
 }

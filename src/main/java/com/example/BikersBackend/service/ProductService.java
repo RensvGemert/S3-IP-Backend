@@ -27,9 +27,17 @@ public class ProductService {
     }
 
     public void createProduct(Product product){
-        if(product.productTitle != "" || product.productDescription != ""){
+        if(product.productTitle != "" || product.productDescription != "") {
             productRepository.save(product);
         }
+    }
+
+    public void deleteProduct(Integer productId){
+        boolean exists = productRepository.existsById(productId);
+        if(!exists){
+            throw new IllegalStateException("Product with id: " + productId + " does not exist");
+        }
+        productRepository.deleteById(productId);
     }
 
 }
