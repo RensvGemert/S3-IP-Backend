@@ -41,4 +41,11 @@ public class ProductController {
         productService.deleteProduct(productId);
     }
 
+    @PutMapping("{productId}")
+    public void updateProduct(
+        @PathVariable("productId") Integer productId,
+                @RequestParam(required = false) String productTitle,
+                @RequestParam(required = false) String productDescription) {
+        productService.updateProduct(productId, productTitle, productDescription);
+    }
 }
