@@ -24,7 +24,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProductById(Integer id){
+    public Optional<Product> getProductById(int id){
         return productRepository.findById(id);
     }
 
@@ -34,7 +34,7 @@ public class ProductService {
         }
     }
 
-    public void deleteProduct(Integer productId){
+    public void deleteProduct(int productId){
         boolean exists = productRepository.existsById(productId);
         if(!exists){
             throw new IllegalStateException("Product with id: " + productId + " does not exist");
@@ -43,7 +43,7 @@ public class ProductService {
     }
 
     @Transactional
-    public void updateProduct(Integer productId, String productTitle, String productDescription) {
+    public void updateProduct(int productId, String productTitle, String productDescription) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalStateException("product with id: " + productId + " not found!"));
 
