@@ -26,14 +26,23 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @RequestMapping("/details/{productId}")
-    @GetMapping
-    public Optional<Product> getProductsById(@PathVariable Integer productId) {
+    @GetMapping("/details/{productId}")
+    public Optional<Product> getProductsById(@PathVariable int productId) {
         return productService.getProductById(productId);
     }
 
     @PostMapping("/create")
     public void createProduct(@RequestBody Product product) {
         productService.createProduct(product);
+    }
+
+    @DeleteMapping("/delete/{productId}")
+    public void deleteProduct(@PathVariable("productId") int productId) {
+        productService.deleteProduct(productId);
+    }
+
+    @PutMapping("/update/{productId}")
+    public void updateProduct(@PathVariable("productId") int productId, @RequestBody Product product) {
+        productService.updateProduct(productId, product.productTitle, product.productDescription);
     }
 }
