@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "productTable")
@@ -13,14 +14,18 @@ public class Product {
     public Integer productId;
     public String productTitle;
     public String productDescription;
+    public BigDecimal productPrice;
+    public String productImageUrl;
 
     public Product() {
     }
 
-    public Product(Integer productId, String productTitle, String productDescription) {
+    public Product(Integer productId, String productTitle, String productDescription, BigDecimal productPrice, String productImageUrl) {
         this.productId = productId;
         this.productTitle = productTitle;
         this.productDescription = productDescription;
+        this.productPrice = productPrice;
+        this.productImageUrl = productImageUrl;
     }
 
     public Integer getProductId() {
@@ -47,6 +52,21 @@ public class Product {
         this.productDescription = productDescription;
     }
 
+    public BigDecimal getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(BigDecimal productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public String getProductImageUrl() {
+        return productImageUrl;
+    }
+
+    public void setProductImageUrl(String productImageUrl) {
+        this.productImageUrl = productImageUrl;
+    }
 
     @Override
     public String toString() {
@@ -54,6 +74,8 @@ public class Product {
                 "productId=" + productId +
                 ", productTitle='" + productTitle + '\'' +
                 ", productDescription='" + productDescription + '\'' +
+                ", productPrice=" + productPrice +
+                ", productImageUrl='" + productImageUrl + '\'' +
                 '}';
     }
 }
