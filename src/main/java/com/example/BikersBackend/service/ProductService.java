@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -43,7 +44,7 @@ public class ProductService {
     }
 
     @Transactional
-    public void updateProduct(int productId, String productTitle, String productDescription) {
+    public void updateProduct(int productId, String productTitle, String productDescription, BigDecimal productPrice, String productImageUrl) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalStateException("product with id: " + productId + " not found!"));
 
@@ -57,6 +58,17 @@ public class ProductService {
                 productDescription.length() > 0 &&
                 !Objects.equals(product.getProductDescription(), productDescription)){
             product.setProductDescription(productDescription);
+        }
+
+        if(productPrice != null &&
+                !Objects.equals(product.getProductPrice(), productPrice)){
+            product.setProductPrice(productPrice);
+        }
+
+        if(productImageUrl != null &&
+                productImageUrl.length() > 0 &&
+                !Objects.equals(product.getProductImageUrl(), productImageUrl)){
+            product.setProductImageUrl(productImageUrl);
         }
     }
 
