@@ -44,31 +44,31 @@ public class ProductService {
     }
 
     @Transactional
-    public void updateProduct(int productId, String productTitle, String productDescription, BigDecimal productPrice, String productImageUrl) {
+    public void updateProduct(int productId, Product prod) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalStateException("product with id: " + productId + " not found!"));
 
-        if(productTitle != null &&
-                productTitle.length() > 0 &&
-                !Objects.equals(product.getProductTitle(), productTitle)){
-            product.setProductTitle(productTitle);
+        if(prod.productTitle != null &&
+                prod.productTitle.length() > 0 &&
+                !Objects.equals(product.getProductTitle(), prod.productTitle)){
+            product.setProductTitle(prod.productTitle);
         }
 
-        if(productDescription != null &&
-                productDescription.length() > 0 &&
-                !Objects.equals(product.getProductDescription(), productDescription)){
-            product.setProductDescription(productDescription);
+        if(prod.productDescription != null &&
+                prod.productDescription.length() > 0 &&
+                !Objects.equals(product.getProductDescription(), prod.productDescription)){
+            product.setProductDescription(prod.productDescription);
         }
 
-        if(productPrice != null &&
-                !Objects.equals(product.getProductPrice(), productPrice)){
-            product.setProductPrice(productPrice);
+        if(prod.productPrice != null &&
+                !Objects.equals(product.getProductPrice(), prod.productPrice)){
+            product.setProductPrice(prod.productPrice);
         }
 
-        if(productImageUrl != null &&
-                productImageUrl.length() > 0 &&
-                !Objects.equals(product.getProductImageUrl(), productImageUrl)){
-            product.setProductImageUrl(productImageUrl);
+        if(prod.productImageUrl != null &&
+                prod.productImageUrl.length() > 0 &&
+                !Objects.equals(product.getProductImageUrl(), prod.productImageUrl)){
+            product.setProductImageUrl(prod.productImageUrl);
         }
     }
 
