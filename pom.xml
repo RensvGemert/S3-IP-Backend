@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>BikersBackend</artifactId>
+	<artifactId>bikers-backend-docker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>BikersBackend</name>
+	<name>bikers-backend-docker</name>
 	<description>none</description>
 	<properties>
 		<java.version>17</java.version>
@@ -40,6 +40,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
@@ -49,5 +50,6 @@
 				<version>${project.parent.version}</version>
 			</plugin>
 		</plugins>
+		<finalName>bikers-backend-docker</finalName>
 	</build>
 </project>
