@@ -4,6 +4,6 @@ COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package
 
 FROM openjdk:latest
-COPY target/bikers-backend-docker.jar /usr/local/lib/bikers-backend-docker.jar
+COPY target/bikers-backend-docker.jar bikers-backend-docker.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/usr/local/lib/bikers-backend-docker.jar"]
+ENTRYPOINT ["java", "-jar", "bikers-backend-docker.jar"]
