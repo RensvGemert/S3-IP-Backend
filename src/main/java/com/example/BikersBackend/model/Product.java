@@ -28,6 +28,13 @@ public class Product {
         this.productImageUrl = productImageUrl;
     }
 
+    public Product(String productTitle, String productDescription, BigDecimal productPrice, String productImageUrl) {
+        this.productTitle = productTitle;
+        this.productDescription = productDescription;
+        this.productPrice = productPrice;
+        this.productImageUrl = productImageUrl;
+    }
+
     public Integer getProductId() {
         return productId;
     }
