@@ -48,7 +48,11 @@ public class ProductController {
     }
 
     @PutMapping("/update/{productId}")
-    public void updateProduct(@PathVariable("productId") int productId, @RequestBody Product product) {
+    public ResponseEntity<Void> updateProduct(@PathVariable("productId") int productId, @RequestBody Product product, UriComponentsBuilder uriComponentsBuilder) {
         productService.updateProduct(productId, product);
+
+        return ResponseEntity
+                .created(uriComponentsBuilder.path("/api/products/{productId}").build(product.getProductId()))
+                .build();
     }
 }
