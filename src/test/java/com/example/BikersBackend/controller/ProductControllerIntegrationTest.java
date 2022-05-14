@@ -3,6 +3,7 @@ package com.example.BikersBackend.controller;
 import com.example.BikersBackend.BikersBackendApplication;
 import com.example.BikersBackend.model.Product;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hamcrest.Matchers;
 import org.json.JSONArray;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 import java.util.Objects;
@@ -52,16 +54,24 @@ class ProductControllerIntegrationTest {
 
     @Test
     @Sql("/test-data.sql")
-    public void getAllProducts_API_GET_TEST() throws Exception{
-        // API TEST
-         var result = mockMvc.perform(MockMvcRequestBuilders.get("/api/products")
-                        .contentType(MediaType.APPLICATION_JSON))
+    public void shouldGetAllProducts() throws Exception{
+         mockMvc.perform(MockMvcRequestBuilders.get("/api/products")
+                         .contentType(MediaType.APPLICATION_JSON))
                  .andExpect(status().isOk())
                  .andExpect(jsonPath("$[0].productId").value(1))
                  .andExpect(jsonPath("$[0].productTitle").value("Testbike1"))
-                 .andExpect(jsonPath("$[0].productDescription").value("Testdescription"))
+                 .andExpect(jsonPath("$[1].productId").value(2))
+                 .andExpect(jsonPath("$[1].productTitle").value("Testbike2"))
                  .andReturn();
+    }
 
-        System.out.println(result.getResponse().getContentAsString());
+    @Test
+    public void shouldCreateProduct() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/products/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"productId\": \"1\", \"productTitle\": \"Testbike\", \"productDescription\": \"Brand new bike\" }"))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(MockMvcResultMatchers.header().exists("Location"))
+                .andExpect(MockMvcResultMatchers.header().string("Location", Matchers.containsString("1")));
     }
 }
