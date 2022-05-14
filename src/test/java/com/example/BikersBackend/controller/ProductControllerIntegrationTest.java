@@ -1,9 +1,7 @@
 package com.example.BikersBackend.controller;
 
 import com.example.BikersBackend.BikersBackendApplication;
-import com.example.BikersBackend.model.Product;
 import org.hamcrest.Matchers;
-import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -14,9 +12,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -89,6 +85,4 @@ class ProductControllerIntegrationTest {
 //                .andExpect(jsonPath("$[0].productImageUrl").value("testurl"))
 //                .andReturn();
     }
-
-
 }
