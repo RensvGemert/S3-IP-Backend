@@ -22,6 +22,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
+import javax.print.attribute.standard.Media;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(
@@ -51,9 +53,21 @@ class ProductControllerIntegrationTest {
                  .andReturn();
     }
 
-
     @Test
     @Order(2)
+    @Sql("/test-data.sql")
+    public void shouldGetProductById() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/products/details/2")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.productTitle").value("Testbike2"))
+                .andExpect(jsonPath("$.productDescription").value("Testdescription2"))
+                .andReturn();
+    }
+
+
+    @Test
+    @Order(3)
     public void shouldCreateProduct() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.post("/api/products/create")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -66,7 +80,7 @@ class ProductControllerIntegrationTest {
 
 
     @Test
-    @Order(3)
+    @Order(4)
     @Sql("/test-data.sql")
     public void shouldUpdateProduct() throws Exception {
             mockMvc.perform(MockMvcRequestBuilders.put("/api/products/update/1")
