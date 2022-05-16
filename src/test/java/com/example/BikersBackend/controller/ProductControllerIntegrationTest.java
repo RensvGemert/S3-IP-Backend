@@ -99,4 +99,15 @@ class ProductControllerIntegrationTest {
 //                .andExpect(jsonPath("$[0].productImageUrl").value("testurl"))
 //                .andReturn();
     }
+
+    @Test
+    @Order(5)
+    @Sql("/test-data.sql")
+    public void shouldDeleteProduct() throws Exception {
+            mockMvc.perform(MockMvcRequestBuilders.delete("/api/products/delete/2")
+                .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(jsonPath("$[1].productId").doesNotExist())
+                    .andExpect(status().isOk());
+    }
 }
