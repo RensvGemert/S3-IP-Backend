@@ -1,5 +1,7 @@
 package com.example.BikersBackend.service;
 
+import com.example.BikersBackend.model.AuthResponse;
+import com.example.BikersBackend.model.Authentication;
 import com.example.BikersBackend.model.User;
 import com.example.BikersBackend.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +30,12 @@ public class UserService {
 
     public void signup(User user){
         userRepository.save(user);
+    }
+
+    public AuthResponse signin(Authentication authentication){
+        int user = userRepository.signin(authentication.getEmail(), authentication.getPassword());
+        User userdata = userRepository.getById(user);
+        AuthResponse authResponse = new AuthResponse(userdata.getId(), userdata.is_admin());
+        return authResponse;
     }
 }

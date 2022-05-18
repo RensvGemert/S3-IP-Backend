@@ -66,7 +66,7 @@ public class User {
         return password;
     }
 
-    public boolean isIs_admin() {
+    public boolean is_admin() {
         return is_admin;
     }
 
