@@ -43,7 +43,7 @@ public class UserController {
     @PostMapping("/signin")
     public ResponseEntity<String> signin(@RequestBody Authentication authentication){
         AuthResponse id = userService.signin(authentication);
-        return ResponseEntity.status(HttpStatus.OK).body("{" + " \"userId\": " + id.getUserId() + "," + "\"is_admin\": " + id.getIs_admin() + "}");
+        return ResponseEntity.status(HttpStatus.OK).body("{" + " \"userId\": " + id.getUserId() + "," + " \"is_admin\": " + id.getIs_admin() + " " + "}");
     }
 }
 
